@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PuzzleRing</string>
+    <string name="ring1">1</string>
+    <string name="ring2">2</string>
+    <string name="ring3">3</string>
+    <string name="ring4">4</string>
+    <string name="ring5">5</string>
+    <string name="ring6">6</string>
+    <string name="ring7">7</string>
+    <string name="ring8">8</string>
+    <string name="ring9">9</string>
+    <string name="reset">Reset</string>
+    <string name="auto">Auto</string>
+    <string name="show_num">Show Num</string>
+    <string name="invalid_op">Invalid Operation!</string>
+    <string name="congratulation">Congratulations!</string>
+    <string name="end">The End</string>
+</resources>
