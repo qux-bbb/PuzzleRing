@@ -1,18 +1,12 @@
 <resources>
-    <string name="app_name">PuzzleRing</string>
-    <string name="ring1">1</string>
-    <string name="ring2">2</string>
-    <string name="ring3">3</string>
-    <string name="ring4">4</string>
-    <string name="ring5">5</string>
-    <string name="ring6">6</string>
-    <string name="ring7">7</string>
-    <string name="ring8">8</string>
-    <string name="ring9">9</string>
-    <string name="reset">Reset</string>
-    <string name="auto">Auto</string>
-    <string name="show_num">Show Num</string>
-    <string name="invalid_op">Invalid Operation!</string>
-    <string name="congratulation">Congratulations!</string>
-    <string name="end">The End</string>
+    <string name="app_name">九连环</string>
+    <string name="reset">重置</string>
+    <string name="auto">自动完成</string>
+    <string name="show_num">显示数字</string>
+    <string name="hide_num" >隐藏数字</string>
+    <string name="rule" >规则</string>
+    <string name="invalid_op">无效操作!</string>
+    <string name="congratulation">恭喜!</string>
+    <string name="end">结束</string>
+    <string name="rule_detail">    九连环的每个环互相制约，只有第一环能够自由上下。\n要想下/上第n个环，就必须满足两个条件(第一个环除外)：\n一、第n-1个环在架上；\n二、第n-1个环前面的环全部不在架上。\n玩九连环就是要努力满足上面的两个条件。\n解下九连环本质上要从后面的环开始下，而先下前面的环，是为了下后面的环，前面的环还要装上，不算是真正地取下来......</string>
 </resources>

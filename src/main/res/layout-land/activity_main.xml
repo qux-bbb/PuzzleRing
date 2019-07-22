@@ -20,24 +20,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/reset"
-            android:textAllCaps="false"/>
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/auto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/auto"
-            android:textAllCaps="false" />
+            android:text="@string/auto" />
 
         <Button
             android:id="@+id/show_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/show_num"
-            android:textAllCaps="false" />
+            android:text="@string/show_num" />
+        <Button
+            android:id="@+id/rule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rule" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,7 +59,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring1"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -68,7 +70,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring2"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -80,7 +81,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring3"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -92,7 +92,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring4"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -104,7 +103,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring5"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -116,7 +114,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring6"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -128,7 +125,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring7"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -140,7 +136,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring8"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
 
@@ -152,7 +147,6 @@
             android:layout_weight="1"
             android:background="@color/colorRed"
             android:gravity="center"
-            android:text="@string/ring9"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"/>
     </LinearLayout>
