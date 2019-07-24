@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<TextView> rings = new ArrayList<TextView>();
 
     int[] flags = {1, 1, 1, 1, 1, 1, 1, 1, 1};  // 标志位
+    int[] tmp_flags = {1, 1, 1, 1, 1, 1, 1, 1, 1};  // 临时标志位，用于计算步骤
+    ArrayList<Integer[]> steps = new ArrayList<Integer[]>();  // 保存步骤，用于更新界面和flags
+
+    AutoSolveTask autoSovleTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,18 +75,30 @@ public class MainActivity extends AppCompatActivity {
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetButton.setClickable(false);
-                resetButton.setLongClickable(false);
-                autoButton.setClickable(false);
-                for(int i=0; i<9; i++)
-                    rings.get(i).setClickable(false);
+                if(autoSovleTask!=null && autoSovleTask.getStatus()!=AsyncTask.Status.FINISHED){
+                    autoSovleTask.cancel(true);
+                    autoButton.setText(R.string.auto);
+                }else{
+                    resetButton.setClickable(false);
+                    resetButton.setLongClickable(false);
+                    for(int i=0; i<9; i++)
+                        rings.get(i).setClickable(false);
 
-                new AutoSolveTask().execute();
+                    steps.clear();
+                    // 之所以用tmp_flags, 是因为修改界面的时候flags的状态要与界面保持同步
+                    // 这样停止之后才能保证flags里有和界面相同的数据(貌似也可以根据背景色恢复flags)
+                    tmp_flags = flags.clone();
+                    for(int i=8; i>=0; i--)
+                        autoSetFlag(i, 0);
+
+                    autoSovleTask = new AutoSolveTask();
+                    autoSovleTask.execute();
+                    autoButton.setText(R.string.stop);
+                }
             }
         });
 
 
-        // 显示或隐藏数字，名字起得不好
         showNumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,6 +156,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // i的取值必定为[0,8]，整数
+    protected void autoSetFlag(int i, int flag){
+        if(tmp_flags[i]==flag)
+            return;
+
+        if(i!=0){
+            autoSetFlag(i-1, 1);
+            if(i>=2){
+                for(int j=i-2; j>=0; j--){
+                    autoSetFlag(j, 0);
+                }
+            }
+        }
+
+        tmp_flags[i] = flag;
+        steps.add(new Integer[]{i, flag});
+        return;
+    }
+
 
     protected boolean canChange(int i){
         if(i==0)
@@ -161,8 +196,21 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            for(int i=8; i>=0; i--)
-                autoSetFlag(i, 0);
+            for(int i=0; i<steps.size();i++){
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // 取消则结束，必须放在界面更新和flags赋值之前，否则会导致界面和flags不一致
+                if(isCancelled())
+                    return null;
+
+                Integer[] step = steps.get(i);
+                publishProgress(step);
+                flags[step[0]] = step[1];
+            }
             return null;
         }
 
@@ -178,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -186,36 +235,19 @@ public class MainActivity extends AppCompatActivity {
 
             resetButton.setClickable(true);
             resetButton.setLongClickable(true);
-            autoButton.setClickable(true);
             for(int i=0; i<9; i++)
                 rings.get(i).setClickable(true);
         }
 
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
 
-        // i的取值必定为[0,8]，整数
-        protected void autoSetFlag(int i, int flag){
-            if(flags[i]==flag)
-                return;
-
-            if(i!=0){
-                autoSetFlag(i-1, 1);
-                if(i>=2){
-                    for(int j=i-2; j>=0; j--){
-                        autoSetFlag(j, 0);
-                    }
-                }
+            resetButton.setClickable(true);
+            resetButton.setLongClickable(true);
+            for(int i=0; i<9; i++){
+                rings.get(i).setClickable(true);
             }
-
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            flags[i] = flag;
-            publishProgress(i, flag);
-
-            return;
         }
     }
 }

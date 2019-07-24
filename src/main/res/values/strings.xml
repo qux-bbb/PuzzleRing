@@ -2,6 +2,7 @@
     <string name="app_name">九连环</string>
     <string name="reset">重置</string>
     <string name="auto">自动完成</string>
+    <string name="stop">停止</string>
     <string name="show_num">显示数字</string>
     <string name="hide_num" >隐藏数字</string>
     <string name="rule" >规则</string>
