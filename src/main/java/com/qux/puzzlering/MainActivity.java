@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(autoSovleTask!=null && autoSovleTask.getStatus()!=AsyncTask.Status.FINISHED){
                     autoSovleTask.cancel(true);
-                    autoButton.setText(R.string.auto);
                 }else{
                     resetButton.setClickable(false);
                     resetButton.setLongClickable(false);
@@ -233,6 +232,8 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this, R.string.end, Toast.LENGTH_LONG).show();
 
+            autoButton.setText(R.string.auto);
+
             resetButton.setClickable(true);
             resetButton.setLongClickable(true);
             for(int i=0; i<9; i++)
@@ -242,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onCancelled() {
             super.onCancelled();
+
+            autoButton.setText(R.string.auto);
 
             resetButton.setClickable(true);
             resetButton.setLongClickable(true);
